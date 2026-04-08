@@ -30,7 +30,7 @@ async function loadFromFile() {
 /*Função para salvar dados no arquivo*/
 
 async function saveToFile() {
-  await Bun.write(filename, JSON.stringify(list));
+  await Bun.write(filename, JSON.stringify(list,null,2));
 }
 
 /*Implemente a função para criar*/
