@@ -11,6 +11,9 @@ if (command === "add") {
     console.error("Por favor, forneça um item para adicionar.");
     process.exit(1);
   }
+  if (!priority) {
+    priority = "Baixa";
+  }
   await todo.addItem(item);
   console.log(`Item "${item}" adicionado com sucesso!`);
   process.exit(0);
