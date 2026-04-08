@@ -34,15 +34,39 @@ const validPriorities = ["Baixa", "Medio", "FAZ LOGO SEU PUTO"];
 
 if (command === "list") {
   const items = await todo.getItems();
+
   if (items.length === 0) {
     console.log("Nenhum item na lista.");
     process.exit(0);
   }
 
-  console.log("Lista de itens:");
+  console.log("Lista de tarefas:");
+
   items.forEach((item, index) => {
-    console.log(`${index}: ${item}`);
+    const status = item.done ? "Concluído" : "Pendente";
+
+    // PRIORIDADE VISUAL
+    let prioridadeTexto = item.priority;
+
+    // DATA
+    let dateText = "";
+    if (item.date) {
+      const now = new Date();
+      const due = new Date(item.date);
+      const diff = Math.ceil((due.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+
+      if (diff < 0) {
+        dateText = " (ATRASADA)";
+      } else if (diff === 0) {
+        dateText = " (vence hoje)";
+      } else {
+        dateText = ` (vence em ${diff} dias)`;
+      }
+    }
+
+    console.log(`${index}: [${status}] [${prioridadeTexto}] ${item.text}${dateText}`);
   });
+
   process.exit(0);
 }
 
