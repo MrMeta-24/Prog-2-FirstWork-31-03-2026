@@ -20,7 +20,7 @@ async function loadFromFile() {
   try {
     const file = Bun.file(filename);
     const content = await file.text();
-    list = JSON.parse(content) as string[];
+    list = JSON.parse(content) as TodoItem[];
   } catch (error) {
     Bun.write(filename, "[]");
     list = [];
