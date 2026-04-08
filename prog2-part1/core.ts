@@ -1,6 +1,16 @@
 /*Caminho para o arquivo JSON e a variável de dados em memória*/
 const filename = __dirname + '/data.todo.json';
-let list: string[] = null!;
+
+type Priority = "Baixa" | "Medio" | "FAZ LOGO SEU PUTO";
+
+type TodoItem = {
+  text: string;
+  done: boolean;
+  priority: Priority;
+  date?: string;
+};
+
+let list: TodoItem[] = null!;
 
 /*Função para carregar os dados do arquivo e salvar os dados no arquivo*/
 
@@ -25,9 +35,9 @@ async function saveToFile() {
 
 /*Implemente a função para criar*/
 
-export async function addItem(item: string) {
+export async function addItem(item: string,priority: Priority = "low",date?: string) {
   await loadFromFile(); // Garante que os dados estão carregados em memória
-  list.push(item);      // Adiciona a nova tarefa ao array `list`
+  list.push(text: item,done: false,priority,date);      // Adiciona a nova tarefa ao array `list`
   await saveToFile();   // Salva os dados atualizados no arquivo JSON
 }
 
