@@ -7,19 +7,17 @@ if (command === "add") {
   const item = process.argv[3];
   let priority = process.argv[4] as any;
   let date = process.argv[5];
+
   if (!item) {
     console.error("Por favor, forneça um item para adicionar.");
     process.exit(1);
   }
+
   if (!priority) {
     priority = "Baixa";
   }
-  await todo.addItem(item);
-  console.log(`Item "${item}" adicionado com sucesso!`);
-  process.exit(0);
-}
 
-const validPriorities = ["Baixa", "Medio", "FAZ LOGO SEU PUTO"];
+  const validPriorities = ["Baixa", "Medio", "FAZ LOGO SEU PUTO"];
   if (!validPriorities.includes(priority)) {
     console.error("Prioridade inválida. Use: Baixa, Medio ou FAZ LOGO SEU PUTO.");
     process.exit(1);
@@ -98,7 +96,7 @@ if (command === "remove") {
     console.error("Por favor, forneça um índice válido para remover.");
     process.exit(1);
   }
-  
+
   try {
     await todo.removeItem(index);
     console.log(`Item no índice ${index} removido com sucesso.`);
